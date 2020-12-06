@@ -1,24 +1,37 @@
 <template>
-  <div class="navbar-area">
-    <nav class="navbar navbar-area">
-      <div class="row container nav-container navbar-expand-lg">
-        <div class="logo">
-          LOGO
+  <div :class="{scrolling: scrollPosition > 50}" class="navbar-area">
+      <div class="navbar container nav-container">
+        <div class="navbar-section">
+          <div class="navbar-brand text-bold mr-2">
+            LOGO {{count}}
+          </div>
         </div>
-        <ul class="navbar-nav">
+        <div class="navbar-section">
           <menu-item v-for="(r,i) in routes" :key="i" :route="r"/>
-        </ul>
+        </div>
       </div>
-    </nav>
   </div>
 </template>
 
 <script>
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   /**
-   * Agregar Mobile navbar
+   * TODO: Agregar Mobile navbar
    */
   name: 'the-navbar',
+  data: () => ({
+    scrollPosition: 0,
+  }),
+  methods: {
+    updateScroll() {
+      this.scrollPosition = window.scrollY;
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.updateScroll);
+  },
   components: {
     MenuItem: () => import(/* webpackChunkName: "menu-item" */ './MenuItem.vue'),
   },
@@ -27,13 +40,14 @@ export default {
       return this.$router.options.routes;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">
 /* Your CSS goes here */
 .navbar-area{
   padding: 0;
+  padding: .4rem;
   position: fixed;
   width: 100%;
   top: 0;
@@ -41,51 +55,22 @@ export default {
   -webkit-transition: all .4s;
   -o-transition: all .4s;
   transition: all .4s;
-
-  .navbar{
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: .5rem 1rem;
+  padding: 10px 0;
+  a{
+    color: black;
   }
-
-  .nav-container {
-    background-color: transparent;
-    padding: 22px 0px;
-    -webkit-transition: all .4s;
-    -o-transition: all .4s;
-    transition: all .4s;
+  a:focus, a:hover, a:active {
+    text-decoration: none;
+    color: black;
   }
-
-  .navbar-nav {
-    width: 100%;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-    .menu-item {
-      margin-right: 20px;
-    }
 }
 
-.logo{
-  padding: 10px;
+.scrolling{
+  background-color: rgba($color: white, $alpha: 0.9);
 }
 
 @media only screen and (max-width: 1399px) and (min-width: 1200px){
-  .navbar-area .nav-container {
+  .nav-container {
     max-width: 95%;
   }
 }

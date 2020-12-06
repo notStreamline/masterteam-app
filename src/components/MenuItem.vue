@@ -1,6 +1,6 @@
 <template>
   <div>
-    <li v-if="isVisible" class="menu-item rounded">
+    <li v-if="isVisible" class="menu-item btn btn-link">
       <router-link
         exact-active-class="text-success"
         :to="{name: route.name}"
