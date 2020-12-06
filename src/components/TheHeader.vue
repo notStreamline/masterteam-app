@@ -2,7 +2,7 @@
     <div class="hero">
         <div class="hero-body container">
             <h1>{{title}}</h1>
-            <search/>
+            <Search/>
         </div>
     </div>
 </template>

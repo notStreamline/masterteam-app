@@ -66,7 +66,7 @@ export default Vue.extend({
 }
 
 .scrolling{
-  background-color: rgba($color: white, $alpha: 0.9);
+  background-color: rgba($color: white, $alpha: 1);
 }
 
 @media only screen and (max-width: 1399px) and (min-width: 1200px){

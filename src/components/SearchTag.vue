@@ -8,7 +8,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'search-tag',
+  name: 'SearchTag',
   props: {
     content: String,
     type: String,

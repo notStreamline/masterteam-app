@@ -1,5 +1,5 @@
 <template>
-    <div class="searchbar input-group">
+    <div class="sbar input-group">
         <form-select/>
         <input type="text" class="form-input" :placeholder="placeholder">
         <button class="btn btn-primary input-group-btn">Buscar Propiedades</button>
@@ -11,7 +11,7 @@ import Vue from 'vue';
 import FormSelect from './FormSelect.vue';
 
 export default Vue.extend({
-  name: 'searchbar',
+  name: 'SearchBar',
   props: {
     placeholder: String,
   },
@@ -22,7 +22,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.searchbar{
+.sbar{
     min-width: 300px;
     max-width: 800px;
     width: 90%;
