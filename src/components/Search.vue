@@ -19,7 +19,7 @@
 import Vue from 'vue';
 import SearchTag from './SearchTag.vue';
 import SearchBar from './SearchBar.vue';
- 
+
 export default Vue.extend({
   name: 'Search',
   data: () => ({
