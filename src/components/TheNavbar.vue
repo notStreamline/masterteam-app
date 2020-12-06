@@ -7,7 +7,7 @@
           </div>
         </div>
         <div class="navbar-section">
-          <menu-item v-for="(r,i) in routes" :key="i" :route="r"/>
+          <MenuItem v-for="(r,i) in routes" :key="i" :route="r"/>
         </div>
       </div>
   </div>
@@ -20,7 +20,7 @@ export default Vue.extend({
   /**
    * TODO: Agregar Mobile navbar
    */
-  name: 'the-navbar',
+  name: 'TheNavbar',
   data: () => ({
     scrollPosition: 0,
   }),

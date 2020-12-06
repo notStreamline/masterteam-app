@@ -1,6 +1,6 @@
 <template>
     <div class="sbar input-group">
-        <form-select/>
+        <FormSelect/>
         <input type="text" class="form-input" :placeholder="placeholder">
         <button class="btn btn-primary input-group-btn">Buscar Propiedades</button>
     </div>

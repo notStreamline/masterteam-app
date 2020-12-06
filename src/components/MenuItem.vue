@@ -15,7 +15,7 @@ export default {
   /**
    * TODO: add the ts tag in the script. Correct the errors
    */
-  name: 'menu-item',
+  name: 'MenuItem',
   props: {
     route: Object,
   },

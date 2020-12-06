@@ -1,5 +1,5 @@
 <template>
-  <the-header/>
+  <TheHeader/>
 </template>
 
 <script lang="ts">

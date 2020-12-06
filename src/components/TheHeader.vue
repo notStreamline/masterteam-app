@@ -2,22 +2,22 @@
     <div class="hero">
         <div class="hero-body container">
             <h1>{{title}}</h1>
-            <Search/>
+            <HeaderFilter/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import Search from './Search.vue';
+import HeaderFilter from './HeaderFilter.vue';
 
 export default Vue.extend({
-  name: 'the-header',
+  name: 'TheHeader',
   data: () => ({
     title: 'El lugar de tu suenos a un solo click',
   }),
   components: {
-    Search,
+    HeaderFilter,
   },
 });
 </script>
