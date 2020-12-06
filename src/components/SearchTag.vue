@@ -1,5 +1,5 @@
 <template>
-  <span :class="type" class="chip noselect">
+  <span class="chip noselect" v-bind:class="[isActive ? 'active' : '', type]">
     {{content}}
   </span>
 </template>
@@ -12,6 +12,7 @@ export default Vue.extend({
   props: {
     content: String,
     type: String,
+    isActive: Boolean,
   },
 });
 </script>
@@ -25,7 +26,7 @@ export default Vue.extend({
   padding: 10px;
   border: black 1px solid;
   border-radius: 10px;
-  &:hover{
+  &:hover, .active{
     cursor: pointer;
     background-color: black;
     color: white;
