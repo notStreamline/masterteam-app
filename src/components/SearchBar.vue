@@ -1,32 +1,32 @@
 <template>
-    <div class="search input-group">
-        <select class="form-select">
-            <option>Residencia</option>
-            <option>Departamento</option>
-            <option>Hogar</option>
-        </select>
+    <div class="sbar input-group">
+        <form-select/>
         <input type="text" class="form-input" :placeholder="placeholder">
-        <button class="btn btn-primary input-group-btn">Submit</button>
+        <button class="btn btn-primary input-group-btn">Buscar Propiedades</button>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import FormSelect from './FormSelect.vue';
 
 export default Vue.extend({
-  name: 'searchbar',
+  name: 'SearchBar',
   props: {
     placeholder: String,
+  },
+  components: {
+    FormSelect,
   },
 });
 </script>
 
 <style lang="scss">
-.search{
+.sbar{
     min-width: 300px;
-    width: 60%;
+    max-width: 800px;
+    width: 90%;
     align-self: center;
-
     .form-select{
         width: 30%;
     }
