@@ -19,6 +19,11 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: 'about' */ '../views/About.vue'),
   },
   {
+    path: '/search',
+    name: 'Search',
+    component: () => import(/* webpackChunkName: 'search' */ '../views/Search.vue'),
+  },
+  {
     path: '*',
     name: 'not-found',
     component: () => import(/* webpackChunkName: 'not-found' */ '../views/About.vue'),
