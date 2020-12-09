@@ -12,11 +12,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import Filter from '@/components/Filter.vue';
 import PropetiesList from '@/components/PropetiesList.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Search',
   components: {
     Filter,

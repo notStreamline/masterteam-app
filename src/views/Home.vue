@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import TheHeader from '@/components/TheHeader.vue'; // @ is an alias to /src
+import { defineComponent } from 'vue';
+import TheHeader from '@/components/TheHeader.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Home',
   components: {
     TheHeader,

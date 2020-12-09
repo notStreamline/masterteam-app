@@ -1,13 +1,13 @@
 <template>
-  <span class="chip noselect" v-bind:class="[isActive ? 'active' : '', type]">
+  <span class="cursor-pointer" v-bind:class="[isActive ? 'active' : '', type]">
     {{content}}
   </span>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'SearchTag',
   props: {
     content: String,
@@ -17,20 +17,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
-.chip{
-  width: fit-content;
-}
+<style scoped lang="scss">
 .full{
-  background: transparent;
-  padding: 10px;
-  border: black 1px solid;
-  border-radius: 10px;
-  &:hover, .active{
-    cursor: pointer;
-    background-color: black;
-    color: white;
-  }
+  @apply bg-transparent hover:bg-gray-900 text-gray-900 font-semibold mx-1.5 my-2;
+  @apply hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded;
 }
 
 .query{

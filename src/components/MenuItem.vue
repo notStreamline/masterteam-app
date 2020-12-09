@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 /* The CSS goes here */
 .nav-link {
   text-decoration: none;

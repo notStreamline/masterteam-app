@@ -16,12 +16,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import SearchTag from './SearchTag.vue';
 import SearchBar from './SearchBar.vue';
 
-export default Vue.extend({
-  name: 'Search',
+export default defineComponent({
+  name: 'HeaderFilter',
   data: () => ({
     activeType: String,
     types: ['Alquilar', 'Comprar', 'Propiedad'],
@@ -34,7 +34,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style scopedlang="scss">
 .search{
   width: 100%;
   display: flex;

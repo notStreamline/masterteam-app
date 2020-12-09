@@ -1,20 +1,22 @@
 <template>
     <div class="hero">
-        <div class="hero-body container">
-            <h1>{{title}}</h1>
+        <div class="container">
+            <h1 class="title">
+              {{title}}
+            </h1>
             <HeaderFilter/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import HeaderFilter from './HeaderFilter.vue';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'TheHeader',
   data: () => ({
-    title: 'El lugar de tu suenos a un solo click',
+    title: 'El lugar de tu suenos a un solo click' as string,
   }),
   components: {
     HeaderFilter,
@@ -22,7 +24,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .hero{
   background-image:url('../assets/img/main-bg.jpg');
   background-color: #cccccc; /* Used if the image is unavailable */
@@ -41,6 +43,10 @@ export default Vue.extend({
 
   h1{
     color: white;
+  }
+  .title{
+    @apply text-4xl tracking-tight font-bold text-gray-100 sm:text-5xl md:text-6xl break-words;
+    @apply xl:w-1/2 md:max-w-full sm:max-w-full place-self-center my-10;
   }
 }
 </style>

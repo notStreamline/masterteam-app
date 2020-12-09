@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import TheNavbar from './components/TheNavbar.vue';
+import TheNavbar from '@/components/TheNavbar.vue';
 
 export default {
   name: 'App',
@@ -17,6 +17,11 @@ export default {
 </script>
 
 <style lang="scss">
+/*! @import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './assets/styles/constant.scss';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
