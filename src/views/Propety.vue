@@ -1,27 +1,18 @@
 <template>
 
-  <h2 class="title">  {{ $route.name }} </h2>
+  <h2 class="title"> The most beautiful out there </h2>
   <div class="container propieties-page">
-      <div class="column">
-        <Filter/>
-      </div>
-      <div class="column">
-        <PropetiesList/>
-      </div>
+      
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Filter from '@/components/Filter.vue';
-import PropetiesList from '@/components/PropetiesList.vue';
-
+/**
+ * Add api call
+ */
 export default defineComponent({
   name: 'Search',
-  components: {
-    Filter,
-    PropetiesList,
-  },
 });
 </script>
 

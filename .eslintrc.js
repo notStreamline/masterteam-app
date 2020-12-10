@@ -12,7 +12,13 @@ module.exports = {
   ],
 
   rules: {
-    'max-len': ["error", { "code": 150}]
+    "max-len": ["error", 
+      { 
+        "ignoreTemplateLiterals": true, 
+        "ignoreStrings": true, 
+        "ignorePattern": 'd="([\\s\\S]*?)"'
+      }
+    ], 
   },
 
   parserOptions: {
@@ -22,6 +28,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    
   },
 
   overrides: [

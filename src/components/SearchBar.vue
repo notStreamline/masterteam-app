@@ -9,7 +9,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import FormSelect from './FormSelect.vue';
-
+/**
+ * TODO: Paginacion
+ */
 export default defineComponent({
   name: 'SearchBar',
   props: {

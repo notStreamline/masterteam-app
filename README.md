@@ -27,3 +27,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Todo
+- Make sure the tailwind is the smallest size
+- I installed the library 'vue-composable' check which components you are using and extract it. for now only pagination. 
+- Borrar MVP.css after mvp face is done also can change colors there 
