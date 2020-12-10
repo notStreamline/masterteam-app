@@ -1,10 +1,10 @@
 <template>
     <div>
       <h1 class="section-title"> Propeties </h1>
-        <PropetyList
-        v-for="propety in propeties"
-        :key="propety.id"
-        :propety="propety"/>
+        <PropertyList
+        v-for="property in properties"
+        :key="property.id"
+        :property="property"/>
         <p>page {{ currentPage }} of {{ lastPage }}</p>
         <p>
           <button @click="prev">prev</button>
@@ -16,10 +16,10 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
 import { usePagination } from 'vue-composable';
-import PropetyList from './PropetyList.vue';
+import PropertyList from './PropertyList.vue';
 
 export default defineComponent({
-  name: 'PropetiesList',
+  name: 'PropertiesList',
   setup() {
     const arrayRef = ref(new Array(20).fill(1).map((_, i) => i));
     // paginate array
@@ -52,7 +52,7 @@ export default defineComponent({
   },
   data() {
     return {
-      propeties: [
+      properties: [
         {
           id: 1,
           uri: 'http://www.dhoumm.co/cdn-k1/lo/an-artful-loft-design_room-interior-and-decoration.jpg',
@@ -83,7 +83,7 @@ export default defineComponent({
     };
   },
   components: {
-    PropetyList,
+    PropertyList,
   },
 });
 </script>

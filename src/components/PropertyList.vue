@@ -1,18 +1,18 @@
 <template>
     <aside>
-        <img :src="propety.uri" alt="" srcset="">
+        <img :src="property.uri" alt="" srcset="">
         <div class="short-description">
-        <a :href="`somewhere${propety.path}`"><h6>{{ propety.title }}</h6></a>
-        <p><span>{{ propety.type }}</span> | <span>by {{ propety.publisher }}</span></p>
+        <a :href="`somewhere${property.path}`"><h6>{{ property.title }}</h6></a>
+        <p><span>{{ property.type }}</span> | <span>by {{ property.publisher }}</span></p>
         <div class="short-details">
-            <div>{{ propety.state }}</div>
-            <div>{{ propety.rooms }}</div>
-            <div>{{ propety.squareMeter }} m2</div>
+            <div>{{ property.state }}</div>
+            <div>{{ property.rooms }}</div>
+            <div>{{ property.squareMeter }} m2</div>
         </div>
         </div>
         <div class="right-action">
         <span class="icon icon-star" />
-        <h5>{{ propety.currency == 'Dollar'? '$' : 'S/.'}} {{ propety.price }}</h5>
+        <h5>{{ property.currency == 'Dollar'? '$' : 'S/.'}} {{ property.price }}</h5>
         </div>
     </aside>
 </template>
@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-interface PropiedadShort {
+interface PropertyShort {
   id: number;
   uri: string;
   title: string;
@@ -35,9 +35,9 @@ interface PropiedadShort {
 }
 
 export default defineComponent({
-  name: 'PropetyList  ',
+  name: 'PropertyList',
   props: {
-    propety: Object as () => PropiedadShort,
+    property: Object as () => PropertyShort,
   },
 });
 </script>

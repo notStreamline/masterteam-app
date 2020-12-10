@@ -36,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/somewhere/:id',
     name: 'Somewhere',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Propety.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/Property.vue'),
   },
   {
     path: '/:pathMatch(.*)*',

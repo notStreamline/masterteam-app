@@ -6,7 +6,7 @@
         <Filter/>
       </div>
       <div class="column">
-        <PropetiesList/>
+        <PropertiesList/>
       </div>
   </div>
 </template>
@@ -14,13 +14,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Filter from '@/components/Filter.vue';
-import PropetiesList from '@/components/PropetiesList.vue';
+import PropertiesList from '@/components/PropertiesList.vue';
 
 export default defineComponent({
   name: 'Search',
   components: {
     Filter,
-    PropetiesList,
+    PropertiesList,
   },
 });
 </script>
