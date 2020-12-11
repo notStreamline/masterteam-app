@@ -14,9 +14,6 @@ import FormSelect from './FormSelect.vue';
  */
 export default defineComponent({
   name: 'SearchBar',
-  props: {
-    placeholder: String,
-  },
   components: {
     FormSelect,
   },

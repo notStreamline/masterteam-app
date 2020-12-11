@@ -55,7 +55,7 @@ export default defineComponent({
       properties: [
         {
           id: 1,
-          uri: 'http://www.dhoumm.co/cdn-k1/lo/an-artful-loft-design_room-interior-and-decoration.jpg',
+          uri: 'https://i1.wp.com/www.planete-deco.fr/wp-content/uploads/2017/01/ST0-3.jpg?w=720&ssl=1',
           title: 'The most beautiful out there',
           type: 'Apartment',
           publisher: 'Someone',

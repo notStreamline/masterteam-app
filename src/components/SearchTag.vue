@@ -1,5 +1,9 @@
 <template>
-  <span class="cursor-pointer" v-bind:class="[isActive ? 'active' : '', type]">
+  <span
+    class="cursor-pointer"
+    v-bind:class="[isActive ? 'active' : '', type]"
+    @click="change(content)"
+  >
     {{content}}
   </span>
 </template>
@@ -13,6 +17,7 @@ export default defineComponent({
     content: String,
     type: String,
     isActive: Boolean,
+    change: Function,
   },
 });
 </script>
@@ -21,6 +26,11 @@ export default defineComponent({
 .full{
   @apply bg-transparent hover:bg-gray-900 text-gray-900 font-semibold mx-1.5 my-2;
   @apply hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded;
+}
+
+.active{
+  background-color: green;
+  color: white;
 }
 
 .query{

@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed w-screen" :class="{scrolling: scrollPosition > 50}">
+  <nav class="w-screen" :class="{scrolling: scrollPosition > 50, fixed: $route.name === 'Home'}">
     <div class=" container max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -45,7 +45,7 @@
         <div class="right">
            <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <a href="/" class="menu-item active">Dashboard</a>
+              <a href="/" class="menu-item active">Home</a>
               <a href="/About" class="menu-item">About</a>
               <a href="/alquilar" class="menu-item">Alquilar</a>
               <a href="#" class="menu-item">Calendar</a>
@@ -104,6 +104,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 /* Your CSS goes here */
+nav{
+  margin: 0;
+}
+//REMOVE this on top
 .menu-item{
   @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
 }
