@@ -7,7 +7,7 @@ export default {
     return Repository.get(`${resource}`);
   },
 
-  createCategory(payload: object): Promise<AxiosResponse> {
+  create(payload: object): Promise<AxiosResponse> {
     return Repository.post(`${resource}`, payload);
   },
 };
