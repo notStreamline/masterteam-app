@@ -7,10 +7,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
-  name: 'form-select',
+export default defineComponent({
+  name: 'FormSelect',
 });
 </script>
 

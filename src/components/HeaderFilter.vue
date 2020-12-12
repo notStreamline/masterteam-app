@@ -2,10 +2,11 @@
   <div class="search">
     <div class="type">
       <SearchTag
-        v-for="type in types"
-        :key="type"
-        :content="type"
-        active="true"
+        v-for="category in categories"
+        :key="category"
+        :content="category"
+        :change="changeCategory"
+        :isActive="activeCategory==category"
         type="full"/>
     </div>
     <SearchBar placeholder="Indique algo o somewhere"/>
@@ -16,25 +17,30 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import SearchTag from './SearchTag.vue';
 import SearchBar from './SearchBar.vue';
 
-export default Vue.extend({
-  name: 'Search',
+export default defineComponent({
+  name: 'HeaderFilter',
   data: () => ({
-    activeType: String,
-    types: ['Alquilar', 'Comprar', 'Propiedad'],
+    categories: ['Alquilar', 'Comprar', 'Propiedad'],
     queries: ['2 Habitaciones', 'Lima', 'Pet Friendly'],
+    activeCategory: 'Alquilar' as string,
   }),
   components: {
     SearchBar,
     SearchTag,
   },
+  methods: {
+    changeCategory(category: string) {
+      this.activeCategory = category;
+    },
+  },
 });
 </script>
 
-<style lang="scss">
+<style scopedlang="scss">
 .search{
   width: 100%;
   display: flex;

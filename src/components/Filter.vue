@@ -1,15 +1,16 @@
 <template>
-  <TheHeader/>
+    <div>Filters</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import TheHeader from '@/components/TheHeader.vue';
-
+/**
+ * Ideas >> Scroll for price
+ */
 export default defineComponent({
-  name: 'Home',
-  components: {
-    TheHeader,
-  },
+  name: 'Filter',
 });
 </script>
+
+<style lang="scss" scoped>
+</style>
