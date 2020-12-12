@@ -11,11 +11,11 @@ export default {
     return Repository.get(`${resource}/${locationId}`);
   },
 
-  createLocation(payload: object): Promise<AxiosResponse> {
+  create(payload: object): Promise<AxiosResponse> {
     return Repository.post(`${resource}`, payload);
   },
 
-  deleteLocationy(locationId: number): Promise<AxiosResponse> {
+  delete(locationId: number): Promise<AxiosResponse> {
     return Repository.delete(`${resource}/${locationId}`);
   },
 };
