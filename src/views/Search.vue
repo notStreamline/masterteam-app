@@ -2,10 +2,10 @@
 
   <h2 class="title">  {{ $route.name }} </h2>
   <div class="container propieties-page">
-      <div class="column">
+      <div class="column-left">
         <Filter/>
       </div>
-      <div class="column">
+      <div class="column-right">
         <PropertiesList/>
       </div>
   </div>
@@ -27,8 +27,7 @@ export default defineComponent({
 
 <style lang="scss">
 .propieties-page{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  display: flex;
   padding-top: 50px;
   width: 100%;
 }
@@ -39,4 +38,14 @@ export default defineComponent({
   text-transform: capitalize;
 }
 
+.column-left{
+  width: 300px
+}
+.column-right{
+  width: calc(100% - 290px);
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
 </style>
