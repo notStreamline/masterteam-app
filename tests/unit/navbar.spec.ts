@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import TheNavbar from './TheNavbar.vue';
+import TheNavbar from '@/componets/TheNavbar.vue';
 
 test('TheNavbar', () => {
   // render the component

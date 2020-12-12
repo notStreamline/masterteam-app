@@ -46,9 +46,9 @@
            <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <a href="/" class="menu-item active">Home</a>
-              <a href="/About" class="menu-item">About</a>
               <a href="/alquilar" class="menu-item">Alquilar</a>
-              <a href="#" class="menu-item">Calendar</a>
+              <a href="/comprar" class="menu-item">Comprar</a>
+              <a href="/propiedades" class="menu-item">Propiedades</a>
             </div>
           </div>
         </div>

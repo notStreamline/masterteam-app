@@ -42,13 +42,13 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 aside{
   padding: 0;
   margin: 0;
   display: flex;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
   height: 160px;
 }
 
