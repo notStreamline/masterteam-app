@@ -34,8 +34,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Search.vue'),
   },
   {
-    path: '/somewhere/:id',
-    name: 'Somewhere',
+    path: '/inmueble/:id',
+    name: 'Inmueble',
     component: () => import(/* webpackChunkName: "about" */ '../views/Property.vue'),
   },
   {

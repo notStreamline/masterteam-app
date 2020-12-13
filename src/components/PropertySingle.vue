@@ -58,7 +58,6 @@ export default defineComponent({
         city: 'Lima',
         country: 'Peru',
       },
-
     };
   },
   components: {

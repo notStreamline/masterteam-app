@@ -2,7 +2,7 @@
     <aside>
         <img :src="property.uri" alt="" srcset="">
         <div class="short-description">
-        <a :href="`somewhere${property.path}`"><h6>{{ property.title }}</h6></a>
+        <a :href="`inmueble${property.path}`"><h6>{{ property.title }}</h6></a>
         <p><span>{{ property.type }}</span> | <span>by {{ property.publisher }}</span></p>
         <div class="short-details">
             <div>{{ property.state }}</div>
