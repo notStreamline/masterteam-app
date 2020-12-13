@@ -1,7 +1,10 @@
 import PropertiesRepository from './propertiesRepository';
 
+interface Properties {
+  get: Function;
+}
 interface Repository {
-  properties: object;
+  properties: Properties;
 }
 
 const repositories: Repository = {

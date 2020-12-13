@@ -1,24 +1,42 @@
 <template>
     <aside>
-        <img :src="property.uri" alt="" srcset="">
+        <img :src="uris[property.id-1]" alt="" srcset="">
         <div class="short-description">
-        <a :href="`inmueble${property.path}`"><h6>{{ property.title }}</h6></a>
-        <p><span>{{ property.type }}</span> | <span>by {{ property.publisher }}</span></p>
+        <router-link :to="{ name: 'inmueble', params: { id: 1 }}">
+          Navigate to Page2
+        </router-link>
+        <a :href="`inmueble/${property.id}`">
+            <h6>{{ address.value }}</h6>
+        </a>
+        <p><span>{{ property.type.groupName }}</span> | <span>by {{ property.publisher }}</span></p>
         <div class="short-details">
-            <div>{{ property.state }}</div>
-            <div>{{ property.rooms }}</div>
-            <div>{{ property.squareMeter }} m2</div>
+            <div>{{ "Nuevo" }}</div>
+            <div>{{ 2 }}</div>
+            <div>{{ 90 }} m2</div>
         </div>
         </div>
         <div class="right-action">
         <span class="icon icon-star" />
         <h5>{{ property.currency == 'Dollar'? '$' : 'S/.'}} {{ property.price }}</h5>
+        <h5>{{ property.currency == 'Dollar'? '$' : 'S/.'}}
+          {{ property.maintenance }}
+        </h5>
         </div>
     </aside>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
+interface Location {
+  id: number;
+  name: string;
+  parentLocation: Location;
+  extent: {
+    id: number;
+    name: string;
+  };
+}
 
 interface PropertyShort {
   id: number;
@@ -27,23 +45,46 @@ interface PropertyShort {
   type: string;
   publisher: string;
   price: number;
+  maintenance: number;
   currency: 'Dollar' | 'Sol';
   squareMeter: number;
   state: 'Nuevo' | 'Usado';
   rooms: string;
   path: string;
+  location: Location;
 }
 
 export default defineComponent({
   name: 'PropertyList',
   props: {
-    property: Object as () => PropertyShort,
+    property: {
+      type: Object as () => PropertyShort,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      uris: ['https://cf.bstatic.com/images/hotel/max1280x900/159/159608125.jpg',
+        'https://www.idshow.com.tw/article_deco/20200131153727/9.jpg'],
+      address: {
+        type: String,
+        required: true,
+        value: `${this.property.location.name}, ${this.property.location.parentLocation.name}`,
+      },
+    };
+  },
+  created() {
+    this.generateAddress();
+  },
+  methods: {
+    generateAddress() {
+      console.log('fuck');
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-
 aside{
   padding: 0;
   margin: 0;
