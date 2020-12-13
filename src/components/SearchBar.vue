@@ -1,8 +1,10 @@
 <template>
     <div class="container flex w-96 my-5">
-        <FormSelect/>
-        <input type="text" class="w-full px-3" :placeholder="placeholder">
-        <button class="btn w-1/6">Buscar</button>
+        <FormSelect
+          @clicked="changeSelection"
+        />
+        <input v-model="query" class="w-full px-3" :placeholder="placeholder">
+        <a :href="`/${path}?search=${query}`" class="btn w-1/6">Buscar</a>
     </div>
 </template>
 
@@ -14,6 +16,15 @@ import FormSelect from './FormSelect.vue';
  */
 export default defineComponent({
   name: 'SearchBar',
+  data() {
+    return {
+      query: '',
+    };
+  },
+  props: {
+    path: String,
+    placeholder: String,
+  },
   components: {
     FormSelect,
   },
@@ -36,5 +47,6 @@ export default defineComponent({
 .btn{
   @apply px-4 bg-green-500 text-white font-semibold shadow-md hover:bg-green-700;
   @apply py-2 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75;
+  cursor: pointer;
 }
 </style>

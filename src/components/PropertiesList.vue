@@ -16,8 +16,11 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
 import { usePagination } from 'vue-composable';
+import PropertyDTO from '@/models/property';
+import Repository from '@/api/RepositoryFactory';
 import PropertyList from './PropertyList.vue';
 
+const PropertiesRepository = Repository.get('properties');
 export default defineComponent({
   name: 'PropertiesList',
   setup() {
@@ -52,38 +55,21 @@ export default defineComponent({
   },
   data() {
     return {
-      properties: [
-        {
-          id: 1,
-          uri: 'https://i1.wp.com/www.planete-deco.fr/wp-content/uploads/2017/01/ST0-3.jpg?w=720&ssl=1',
-          title: 'The most beautiful out there',
-          type: 'Apartment',
-          publisher: 'Someone',
-          price: 20000,
-          currency: 'Dollar',
-          squareMeter: '92',
-          state: 'Nuevo',
-          rooms: 23,
-          path: '/room',
-        },
-        {
-          id: 2,
-          uri: 'https://resources.stuff.co.nz/content/dam/images/1/v/v/t/6/o/image.related.StuffLandscapeSixteenByNine.710x400.1vuu0x.png/1562797525682.jpg?format=pjpg&optimize=medium',
-          title: 'The second most beautiful out there',
-          type: 'House',
-          publisher: 'Diego',
-          price: 5000,
-          currency: 'Soles',
-          squareMeter: '102',
-          state: 'Usado',
-          rooms: 6,
-          path: '/roomy',
-        },
-      ],
+      properties: [] as Array<PropertyDTO>,
     };
   },
   components: {
     PropertyList,
+  },
+  created() {
+    this.getProperties();
+  },
+  methods: {
+    getProperties: async function getProperties() {
+      const { data: { body } } = await PropertiesRepository.get();
+      console.log(body);
+      this.properties = body.content;
+    },
   },
 });
 </script>

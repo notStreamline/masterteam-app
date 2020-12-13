@@ -9,7 +9,10 @@
         :isActive="activeCategory==category"
         type="full"/>
     </div>
-    <SearchBar placeholder="Indique algo o somewhere"/>
+    <SearchBar
+      :path="activeCategory"
+      placeholder="Indique algo o somewhere"
+    />
     <div class="queries">
       <!-- Add the query from the back end ? -->
     </div>

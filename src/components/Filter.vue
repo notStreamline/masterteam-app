@@ -2,26 +2,7 @@
     <aside class="filters">
       <h6>Filters</h6>
       <p>Propety Type</p>
-      <div class="property-types">
-        <div class="property-type">
-          <input type="radio" id="house" v-model="propertyType" value="0" checked>
-          <label for="house">House</label>
-        </div>
-
-        <div class="property-type">
-          <input type="radio" id="office" v-model="propertyType" value="1">
-          <label for="office">Office</label>
-        </div>
-
-        <div class="property-type">
-          <input type="radio" id="aparment" v-model="propertyType" value="2">
-          <label for="aparment">Apartment</label>
-        </div>
-        <div class="property-type">
-          <input type="radio" id="aparment" v-model="propertyType" value="2">
-          <label for="aparment">Apartment</label>
-        </div>
-      </div>
+      <FormRadioInput :values="propertiesType"/>
       <p>Price Range</p>
       <div class="price-input">
           <input v-model="message" placeholder="500">
@@ -70,6 +51,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import FormNumberSelector from './FormNumberSelector.vue';
+import FormRadioInput from './FormRadioInput.vue';
+
 /**
  * Ideas >> Scroll for price
  */
@@ -77,6 +60,12 @@ export default defineComponent({
   name: 'Filter',
   components: {
     FormNumberSelector,
+    FormRadioInput,
+  },
+  data() {
+    return {
+      propertiesType: ['Home', 'Aparment', 'Lot', 'Office'],
+    };
   },
 });
 </script>
@@ -93,19 +82,6 @@ export default defineComponent({
 
 input {
     margin: .4rem;
-}
-.property-types{
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-  flex-wrap: wrap;
-  .property-type{
-    display: flex;
-    p,
-    label {
-        font: 1rem 'Fira Sans', sans-serif;
-    }
-  }
 }
 
 .range-value{
