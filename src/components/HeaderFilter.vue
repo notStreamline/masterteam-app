@@ -10,7 +10,7 @@
         type="full"/>
     </div>
     <SearchBar
-      :path="activeCategory"
+      :category="activeCategory"
       placeholder="Indique algo o somewhere"
     />
     <div class="queries">

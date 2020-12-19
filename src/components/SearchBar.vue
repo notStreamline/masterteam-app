@@ -4,7 +4,7 @@
           @clicked="changeSelection"
         />
         <input v-model="query" class="w-full px-3" :placeholder="placeholder">
-        <a :href="`/${path}?search=${query}`" class="btn w-1/6">Buscar</a>
+        <a :href="`/search?cat=${category}&query=${query}`" class="btn w-1/6">Buscar</a>
     </div>
 </template>
 
@@ -22,7 +22,7 @@ export default defineComponent({
     };
   },
   props: {
-    path: String,
+    category: String,
     placeholder: String,
   },
   components: {

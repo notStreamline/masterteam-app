@@ -1,15 +1,18 @@
 <template>
     <div>
       <h1 class="section-title"> Propeties </h1>
-        <PropertyList
-        v-for="property in properties"
-        :key="property.id"
-        :property="property"/>
-        <p>page {{ currentPage }} of {{ lastPage }}</p>
-        <p>
-          <button @click="prev">prev</button>
-          <button @click="next">next</button>
-        </p>
+        <div v-if="!loading">
+          <PropertyList
+            v-for="property in properties"
+            :key="property.id"
+            :property="property"/>
+          <p>page {{ currentPage }} of {{ lastPage }}</p>
+          <p>
+            <button @click="prev">prev</button>
+            <button @click="next">next</button>
+          </p>
+        </div>
+        <h1 v-else>Oh no 😢</h1>
     </div>
 </template>
 
@@ -55,6 +58,7 @@ export default defineComponent({
   },
   data() {
     return {
+      loading: true as boolean,
       properties: [] as Array<PropertyDTO>,
     };
   },
@@ -67,8 +71,11 @@ export default defineComponent({
   methods: {
     getProperties: async function getProperties() {
       const { data: { body } } = await PropertiesRepository.get();
-      console.log(body);
       this.properties = body.content;
+
+      if (body) {
+        this.loading = false;
+      }
     },
   },
 });

@@ -2,13 +2,13 @@
     <aside>
         <img :src="uris[property.id-1]" alt="" srcset="">
         <div class="short-description">
-        <router-link :to="{ name: 'inmueble', params: { id: 1 }}">
-          Navigate to Page2
-        </router-link>
         <a :href="`inmueble/${property.id}`">
             <h6>{{ address.value }}</h6>
         </a>
-        <p><span>{{ property.type.groupName }}</span> | <span>by {{ property.publisher }}</span></p>
+        <p>
+          <span>{{ property.propertyType.groupName }}</span>
+          | <span>by {{ property.publisher }}</span>
+        </p>
         <div class="short-details">
             <div>{{ "Nuevo" }}</div>
             <div>{{ 2 }}</div>
@@ -31,18 +31,22 @@ import { defineComponent } from 'vue';
 interface Location {
   id: number;
   name: string;
-  parentLocation: Location;
-  extent: {
-    id: number;
-    name: string;
-  };
+  extentId: number;
+  extentName: string;
+  parent?: Location;
+}
+
+interface PropertyType {
+  groupName: string;
+  id: number;
+  name: string;
 }
 
 interface PropertyShort {
   id: number;
   uri: string;
   title: string;
-  type: string;
+  propertyType: PropertyType;
   publisher: string;
   price: number;
   maintenance: number;
@@ -52,6 +56,7 @@ interface PropertyShort {
   rooms: string;
   path: string;
   location: Location;
+  features: Array<string>;
 }
 
 export default defineComponent({
@@ -69,7 +74,7 @@ export default defineComponent({
       address: {
         type: String,
         required: true,
-        value: `${this.property.location.name}, ${this.property.location.parentLocation.name}`,
+        value: `${this.property.location.name}, ${this.property.location.parent?.name}`,
       },
     };
   },
