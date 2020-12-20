@@ -1,70 +1,90 @@
 <template>
-    <div class="container details-property">
-        <!-- seccion de informacion de propiedad-->
-        <div class="details">
-            <!-- seccion de imagenes -->
-            <PropertySingleImageGrid
+    <div v-if="valid && !loading">
+      <div class="container details-property">
+          <!-- seccion de informacion de propiedad-->
+          <div class="details">
+              <!-- seccion de imagenes -->
+              <PropertySingleImageGrid
 
-            />
-            <!-- seccion de details -->
-            <PropertySingleDetails
-                :price="199000"
-                :location="location"
-            />
-            <div class="map">
-                <!-- seccion de Mapa -->
-                <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20Lima+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://embedmap.org/'>embed google maps into website</a>
-            </div>
-        </div>
-        <div class="publisher-info">
-            <!-- seccion de informacion del publicador-->
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="40" stroke="gray" stroke-width="2"/>
-            </svg>
-            <h3>Agente</h3>
-            <div>
-                930 *** ***
-                <span>Ver numero</span>
-            </div>
+              />
+              <!-- seccion de details -->
+              <PropertySingleDetails
+                  :property="property"
+                  :location="property.location"
+              />
+              <div class="map">
+                  <!-- seccion de Mapa -->
+                  <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%20Lima+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://embedmap.org/'>embed google maps into website</a>
+              </div>
+          </div>
+          <div class="publisher-info">
+              <!-- seccion de informacion del publicador-->
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" stroke="gray" stroke-width="2"/>
+              </svg>
+              <h3>Agente</h3>
+              <div>
+                  930 *** ***
+                  <span>Ver numero</span>
+              </div>
 
-            <button>
-                <p>Contactar Publicador</p>
-            </button>
-        </div>
-        </div>
-        <div>
-            <!-- seccion de propiedades similares-->
-        </div>
-        <div>
-            <!-- seccion de seguridad similares-->
-        </div>
-        <!-- Footer end -->
+              <button>
+                  <p>Contactar Publicador</p>
+              </button>
+          </div>
+      </div>
+      <div>
+          <!-- seccion de propiedades similares-->
+      </div>
+      <div>
+          <!-- seccion de seguridad similares-->
+      </div>
+      <!-- Footer end -->
+    </div>
+    <div v-else-if="!valid && !loading">
+        <p>Not valid</p>
+    </div>
+    <div v-else>
+        LOADING....
+    </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import PropertyShort from '@/models/property';
+import Repository from '@/api/RepositoryFactory';
 import PropertySingleImageGrid from './PropertySingleImageGrid.vue';
 import PropertySingleDetails from './PropertySingleDetails.vue';
-/**
- * Add api calls
- */
+
+const PropertiesRepository = Repository.get('properties');
 export default defineComponent({
   name: 'PropetySingle',
   data() {
     return {
-      location: {
-        address: 'Av. San Felipe 1070',
-        district: 'Jesus Maria',
-        city: 'Lima',
-        country: 'Peru',
-      },
+      property: {} as PropertyShort,
+      loading: true as boolean,
+      valid: true as boolean,
     };
   },
   components: {
     PropertySingleImageGrid,
     PropertySingleDetails,
   },
+  created() {
+    this.getProperty();
+  },
+  methods: {
+    getProperty: async function getProperty() {
+      const id = this.$route.params.id || 0;
+      const { data } = await PropertiesRepository.getProperty(id);
+      this.property = data.body;
 
+      if (data.body) {
+        this.loading = false;
+        this.valid = data.ok;
+      }
+    },
+  },
 });
 </script>
 
@@ -91,7 +111,6 @@ a{
     border-radius: 10px;
     height: 300px;
 }
-
 .map{
   margin: 10px 50px;
 }

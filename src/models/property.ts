@@ -1,8 +1,5 @@
-interface Property {
-  bathrooms: number;
-  bedrooms: number;
+export interface Property {
   description: string;
-  halfBathrooms: number;
   id: number;
   maintenance: number;
   metersBuilt: number;
@@ -10,11 +7,11 @@ interface Property {
   price: number;
   title: string;
   totalMeters: number;
-  categoryId: number;
+  features: number;
   locationId: number;
 }
 
-interface PropertyDTO{
+export interface PropertyDTO{
   bathrooms: number;
   bedrooms: number;
   category: {
@@ -50,4 +47,31 @@ interface PropertyDTO{
   totalMeters: number;
 }
 
-export default Property;
+export interface Location {
+  id: number;
+  name: string;
+  extentId: number;
+  extentName: string;
+  parent?: Location;
+}
+
+interface PropertyType {
+  groupName: string;
+  id: number;
+  name: string;
+}
+
+export default interface PropertyShort {
+  id: number;
+  uri: string;
+  title: string;
+  propertyType: PropertyType;
+  publisher: string;
+  price: number;
+  maintenance: number;
+  currency: 'Dollar' | 'Sol';
+  state: 'Nuevo' | 'Usado';
+  path: string;
+  location: Location;
+  features: Array<string>;
+}

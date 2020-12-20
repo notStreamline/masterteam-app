@@ -67,7 +67,6 @@
         <a href="#" class="mobile-menu-item">Projects</a>
         <a href="#" class="mobile-menu-item">Calendar</a>
       </div>
-        <MenuItem v-for="(r,i) in routes" :key="i" :route="r"/>
     </div>
   </nav>
 </template>
@@ -90,14 +89,6 @@ export default defineComponent({
   },
   mounted() {
     window.addEventListener('scroll', this.updateScroll);
-  },
-  components: {
-    MenuItem: () => import(/* webpackChunkName: "menu-item" */ './MenuItem.vue'),
-  },
-  computed: {
-    routes() {
-      return this.$router.options.routes;
-    },
   },
 });
 </script>

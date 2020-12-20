@@ -2,6 +2,7 @@ import PropertiesRepository from './propertiesRepository';
 
 interface Properties {
   get: Function;
+  getProperty: Function;
 }
 interface Repository {
   properties: Properties;
