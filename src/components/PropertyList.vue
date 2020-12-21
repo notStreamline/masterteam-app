@@ -27,43 +27,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-interface Location {
-  id: number;
-  name: string;
-  extentId: number;
-  extentName: string;
-  parent?: Location;
-}
-
-interface PropertyType {
-  groupName: string;
-  id: number;
-  name: string;
-}
-
-interface PropertyShort {
-  id: number;
-  uri: string;
-  title: string;
-  propertyType: PropertyType;
-  publisher: string;
-  price: number;
-  maintenance: number;
-  currency: 'Dollar' | 'Sol';
-  squareMeter: number;
-  state: 'Nuevo' | 'Usado';
-  rooms: string;
-  path: string;
-  location: Location;
-  features: Array<string>;
-}
+import Property from '@/models/property';
 
 export default defineComponent({
   name: 'PropertyList',
   props: {
     property: {
-      type: Object as () => PropertyShort,
+      type: Object as () => Property,
       required: true,
     },
   },
@@ -74,7 +44,7 @@ export default defineComponent({
       address: {
         type: String,
         required: true,
-        value: `${this.property.location.name}, ${this.property.location.parent?.name}`,
+        value: `${this.property.address.name}, ${this.property.address.location?.name}`,
       },
     };
   },

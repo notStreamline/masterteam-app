@@ -3,16 +3,15 @@
         <div class="price">
             <p class="ammount">
                 <span>$</span>
-                {{ price }}
+                {{ property.price }}
             </p>
         </div>
         <div class="location">
             <p class="locate">
-                <span class="address">{{ location.address}}, </span>
-                <span class="district">{{ location.district}}</span><br/>
+                <span class="address">{{ location.id}}, </span>
+                <span class="district">{{ location.name}}</span><br/>
                 <span class="city">
                     <!-- Loop around info -->
-                    {{location.city}}, {{location.country}}
                 </span>
             </p>
             <div class="line"/>
@@ -32,11 +31,7 @@
             <div class="description">
                 <h6>Descripcion</h6>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean viverra gravida lacus quis semper. Donec nec
-                    finibus eros. Nam mattis dapibus tincidunt. Suspendisse
-                    ut nulla mauris. Duis pharetra, ipsum quis porta
-                    fringilla, orci lacus viverra ex, quis aliquet.
+                    {{ property.description }}
                     <a>Leer Mas</a>
                 </p>
             </div>
@@ -45,15 +40,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import PropertyShort, { Location } from '@/models/property';
 
 export default defineComponent({
   name: 'PropetySingleDetails',
   props: {
-    price: Number,
-    offer: Number,
-    location: Object,
-    details: Object,
+    property: Object as PropType<PropertyShort>,
+    location: Object as PropType<Location>,
   },
 });
 </script>

@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
 import { usePagination } from 'vue-composable';
-import PropertyDTO from '@/models/property';
+import Property from '@/models/property';
 import Repository from '@/api/RepositoryFactory';
 import PropertyList from './PropertyList.vue';
 
@@ -59,7 +59,7 @@ export default defineComponent({
   data() {
     return {
       loading: true as boolean,
-      properties: [] as Array<PropertyDTO>,
+      properties: [] as Array<Property>,
     };
   },
   components: {
