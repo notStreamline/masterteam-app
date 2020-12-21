@@ -10,7 +10,7 @@
               <!-- seccion de details -->
               <PropertySingleDetails
                   :property="property"
-                  :location="property.location"
+                  :location="property.address"
               />
               <div class="map">
                   <!-- seccion de Mapa -->

@@ -1,16 +1,3 @@
-export interface Property {
-  description: string;
-  id: number;
-  maintenance: number;
-  metersBuilt: number;
-  parkingLots: number;
-  price: number;
-  title: string;
-  totalMeters: number;
-  features: number;
-  locationId: number;
-}
-
 export interface PropertyDTO{
   bathrooms: number;
   bedrooms: number;
@@ -61,17 +48,17 @@ interface PropertyType {
   name: string;
 }
 
-export default interface PropertyShort {
+export default interface Property {
   id: number;
-  uri: string;
   title: string;
+  description: string;
   propertyType: PropertyType;
-  publisher: string;
   price: number;
   maintenance: number;
-  currency: 'Dollar' | 'Sol';
-  state: 'Nuevo' | 'Usado';
-  path: string;
-  location: Location;
+  address: {
+    id: number;
+    name: string;
+    location: Location;
+  };
   features: Array<string>;
 }
