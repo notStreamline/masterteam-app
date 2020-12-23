@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="google-map" ref="googleMap"></div>
-    <template v-if="Boolean(this.google) && Boolean(this.map)">
+    <template v-if="Boolean(this.map)">
       <slot
-        :google="google"
+        :loader="loader"
         :map="map"
       />
     </template>
@@ -12,45 +12,58 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import GoogleMapsApiLoader from 'google-maps-api-loader'
-
-interface Map {
-    Map(map: object, config: object): object;
-}
-interface Google {
-    maps: {
-        Map(map: object, config: object): object;
-    };
-}
+import { Loader } from '@googlemaps/js-api-loader';
 
 export default defineComponent({
-  props: {
-    mapConfig: Object,
-    apiKey: String,
-  },
-
   data() {
     return {
-      google: {} as Google,
-      map: {} as object,
+      loader: {} as Loader,
+      map: {} as google.maps.Map,
+      mapOptions: {} as object,
     };
   },
 
   async mounted() {
-    const googleMapApi = await GoogleMapsApiLoader({
-      apiKey: this.apiKey,
+    this.loader = new Loader({
+      apiKey: 'AIzaSyBAmaK28RKU4I5n5EHZ2O7-1d1lJMn1dNw',
+      version: 'weekly',
+      libraries: ['places'],
     });
-    this.google = googleMapApi;
+
+    this.mapOptions = {
+      center: {
+        lat: -12.046373,
+        lng: -77.042755,
+      },
+      zoom: 4,
+    };
     this.initializeMap();
   },
 
   methods: {
     initializeMap() {
-      const mapContainer = this.$refs.googleMap as object;
-      const MapConstructor = this.google.maps.Map;
-      if (this.google !== null) {
-        this.map = new MapConstructor(mapContainer, this.mapConfig) as HTMLElement;
-      }
+      console.log(this.loader, this.mapOptions, this.$refs.googleMap);
+      const mapContainer = this.$refs.googleMap as HTMLElement;
+      this.loader.load().then(() => {
+        // eslint-disable-next-line no-undef
+        this.map = new google.maps.Map(
+          mapContainer, this.mapOptions,
+        );
+      }).catch((e) => {
+        // do something
+        console.log(e);
+      });
+
+      this.loader.loadCallback((e) => {
+        if (e) {
+          console.log(e);
+        } else {
+          // eslint-disable-next-line no-undef
+          this.map = new google.maps.Map(
+            mapContainer, this.mapOptions,
+          );
+        }
+      });
     },
   },
 });

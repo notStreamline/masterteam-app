@@ -5,6 +5,13 @@ export interface Location {
   extentName: string;
   parent?: Location;
 }
+export interface Address {
+  id?: number;
+  latitude: number;
+  longitude: number;
+  name: string;
+  location: Location;
+}
 export interface Feature {
   featureId: number;
   label: string;
@@ -36,12 +43,7 @@ export interface PropertyDTO {
   propertyTypeId: number;
   prices: Array<Price>;
   addressId: number;
-  address: {
-    latitude: number;
-    longitude: number;
-    name: string;
-    locationId: number;
-  };
+  address: Address;
   features: Array<FeatureDTO>;
 }
 

@@ -8,21 +8,37 @@
         </div>
         <div class="location">
             <p class="locate">
-                <span class="address">{{ location.id}}, </span>
-                <span class="district">{{ location.name}}</span><br/>
+                <span class="address">{{ address.name }}, </span>
+                <span class="district">{{ address.location.name }}</span><br/>
                 <span class="city">
                     <!-- Loop around info -->
+                    {{ address.location.parent.name }},
+                    {{ address.location.parent.parent.name }}
                 </span>
             </p>
             <div class="line"/>
         </div>
-        <div class="navegation">
-            Circulo
+        <div class="navegation flex flex-col rounded-full bg-gray-100 w-12">
+            <i class="fa fa-info-circle"
+                :class="{active: navegation=='info'}"
+                @click="()=> navegation='info'"
+                aria-hidden="true">
+            </i>
+            <i class="fa fa-car"
+                @click="()=> navegation='car'"
+                :class="{active: navegation=='car'}"
+                aria-hidden="true">
+            </i>
+            <i class="fa fa-map-marker"
+                @click="()=> navegation='map'"
+                :class="{active: navegation=='map'}"
+                aria-hidden="true">
+            </i>
         </div>
-        <div class="details">
+        <div v-if="navegation=='info'" class="details">
             <div class="grid-details">
                 <div
-                    v-for="feature in groupFeatures('Generales')"
+                    v-for="feature in groupFeatures('General')"
                     :key="feature.id"
                 >
                     <p>{{ feature.label }}</p>
@@ -30,19 +46,33 @@
                 </div>
             </div>
             <div class="description">
-                <h6>Descripcion</h6>
-                <p>
-                    {{ property.description }}
-                    <a>Leer Mas</a>
-                </p>
+                <h6><b>Descripcion</b></h6>
+                <div>
+                    <span v-if="!readMore">{{property.description.slice(0, 50)}}</span>
+                    <span v-if="readMore" v-html="property.description"></span>
+                    <br>
+                    <a class="" v-if="!readMore" @click="toggleReadMore" href="#">
+                    Leer Mas...
+                    </a>
+                    <a class="" v-if="readMore" @click="toggleReadMore" href="#">
+                    Leer Menos.
+                    </a>
+                </div>
             </div>
+        </div>
+        <div v-if="navegation=='car'" class="car">
+            CAR
+        </div>
+        <div v-if="navegation=='map'" class="map">
+            <GoogleMapLoader/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import PropertyShort, { Location, Feature } from '@/models/property';
+import PropertyShort, { Address, Feature } from '@/models/property';
+import GoogleMapLoader from './GoogleMapLoader.vue';
 
 interface Features {
     General: Array<Feature>;
@@ -50,9 +80,18 @@ interface Features {
 
 export default defineComponent({
   name: 'PropetySingleDetails',
+  data() {
+    return {
+      navegation: 'info' as string,
+      readMore: false as boolean,
+    };
+  },
+  components: {
+    GoogleMapLoader,
+  },
   props: {
     property: Object as PropType<PropertyShort>,
-    location: Object as PropType<Location>,
+    address: Object as PropType<Address>,
     features: {
       required: true,
       type: [] as PropType<Array<Feature>>,
@@ -62,6 +101,9 @@ export default defineComponent({
   methods: {
     groupFeatures(category: string): Array<Feature> {
       return this.features.filter((e: Feature) => e.featureCategoryName === category);
+    },
+    toggleReadMore(): void {
+      this.readMore = !this.readMore;
     },
   },
 });
@@ -86,22 +128,39 @@ export default defineComponent({
 
     .navegation {
         grid-area: 2 / 1 / 3 / 2;
+        height: 200px;
+        align-items: center;
+        justify-content: center;
+        justify-self: center;
+        width: 80px;
+        padding: 10px 8px;
+        i{
+            margin: 5px 5px;
+            text-align: center;
+            width: 48px;
+            height: 48px;
+            padding: 0.6em 0.6em;
+            color: #888;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        i.active{
+            background-color: white;
+            border-radius: 60px;
+            box-shadow: 0px 0px 2px #888;
+        }
     }
 
     .location {
         grid-area: 1 / 2 / 2 / 3;
         text-align: left;
-        line-height: 1rem;
         margin-left: 20px;
         .line{
             border-bottom: 3px solid #ddd;
-            margin-bottom: 12px;
             text-align: center;
             width: 90%;
             display: block;
-            margin-top: 30px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 15px auto;
         }
         p{
             font-size: 24px;

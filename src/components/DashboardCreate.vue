@@ -134,7 +134,37 @@
       </div>
     </form >
     <div v-if="active==='Multimedia'">
-      Media
+      <h6>Images</h6>
+      <div class="media" draggable="false">
+        <div class="upload dropzone m-3"
+            @click="openFileSelection"
+            v-on:dragover="onDragOver"
+            v-on:dragleave="onDragLeave"
+            v-on:drop="onDrop"
+          >
+            <i class="fa fa-upload fa-2x" aria-hidden="true"></i>
+            <input
+              ref="fileInput"
+              class="file-input"
+              type="file"
+              multiple
+              v-on:change="onFileChanged"
+            />
+            <a>Agregar imagen</a>
+          </div>
+        <draggable
+          class="dragArea list-group flex flex-wrap"
+          :list="list"
+        >
+          <div
+            class="list-group-item m-3"
+            v-for="element in list"
+            :key="element.id"
+          >
+            <img :src="element.uri" alt="">
+          </div>
+        </draggable>
+      </div>
       <div>
          <button
           class="px-8 py-2 text-white bg-purple-600 hover:bg-purple-700 cursor-pointer"
@@ -187,6 +217,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { VueDraggableNext } from 'vue-draggable-next';
 import Repository from '@/api/RepositoryFactory';
 import { PropertyDTO, Location } from '@/models/property';
 
@@ -207,8 +238,21 @@ export default defineComponent({
       prices: {} as Array<number>,
       features: {} as Array<number>,
       tipoOperacion: String,
+      enabled: true as boolean,
       active: 'Pricipal' as string,
+      hightlight: false,
+      list: [
+        { uri: 'https://photos.zillowstatic.com/fp/aa82890fa30977d76d883ac060825c6c-uncropped_scaled_within_1344_1008.webp', id: 1 },
+        { uri: 'https://photos.zillowstatic.com/fp/d76007346c78be2232e07fa5bb88e77e-uncropped_scaled_within_1344_1008.webp', id: 2 },
+        { uri: 'https://photos.zillowstatic.com/fp/0613010f8e17717e178bfce4ffdfaddb-uncropped_scaled_within_1344_1008.webp', id: 3 },
+        { uri: 'https://photos.zillowstatic.com/fp/c6ccb1e4b0ce57736479664699be6230-uncropped_scaled_within_1344_1008.webp', id: 4 },
+        { uri: 'https://photos.zillowstatic.com/fp/fd05d69c5174150f01b73132a7810a09-uncropped_scaled_within_1344_1008.webp', id: 5 },
+      ],
+      dragging: false,
     };
+  },
+  components: {
+    draggable: VueDraggableNext,
   },
   methods: {
     sendData() {
@@ -227,6 +271,18 @@ export default defineComponent({
     },
     activate() {
       PropertiesRepository.create(this.property);
+    },
+    openFileSelection(): void {
+      if (!this.enabled) return;
+      console.log('nope');
+    },
+    onDragOver(event: DragEvent): void {
+      if (!this.enabled) return;
+      event.preventDefault();
+      this.hightlight = true;
+    },
+    onDragLeave(event: DragEvent): void {
+      this.hightlight = false;
     },
   },
 });
@@ -263,6 +319,40 @@ section{
   label{
     text-align: left;
     margin: 25px 0 5px 0;
+  }
+}
+.media{
+  display: flex;
+  flex-wrap: wrap;
+  .upload{
+    height: 150px;
+    width: 250px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid blanchedalmond;
+    cursor: pointer;
+    input{
+      width: 100%;
+      height: 100%;
+      background: rgba(150,225,150,0.5);
+      vertical-align: middle;
+      text-align: center;
+      color: #FFF;
+      font-weight: bold;
+      opacity: 0;
+      position: absolute;
+      cursor: pointer;
+    }
+    a{
+      font-size: 16px;
+    }
+  }
+  .list-group-item, img{
+    max-height: 150px;
+    width: 250px;
   }
 }
 </style>
