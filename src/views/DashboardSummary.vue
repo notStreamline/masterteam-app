@@ -1,16 +1,16 @@
 <template>
-    <PropertySingle/>
+  <div>
+    <div>
+      <h1>DashboardSummary</h1>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import PropertySingle from '@/components/PropertySingle.vue';
 
 export default defineComponent({
-  name: 'Search',
-  components: {
-    PropertySingle,
-  },
+  name: 'DashboardSummary',
 });
 </script>
 

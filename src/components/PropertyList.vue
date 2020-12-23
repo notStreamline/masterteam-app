@@ -48,14 +48,6 @@ export default defineComponent({
       },
     };
   },
-  created() {
-    this.generateAddress();
-  },
-  methods: {
-    generateAddress() {
-      console.log('fuck');
-    },
-  },
 });
 </script>
 

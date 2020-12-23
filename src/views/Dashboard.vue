@@ -1,16 +1,17 @@
 <template>
-    <PropertySingle/>
+  <div class="w-full">
+    <div>
+      <h1>Dashboard >> </h1>
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import PropertySingle from '@/components/PropertySingle.vue';
 
 export default defineComponent({
-  name: 'Search',
-  components: {
-    PropertySingle,
-  },
+  name: 'Dashboard',
 });
 </script>
 

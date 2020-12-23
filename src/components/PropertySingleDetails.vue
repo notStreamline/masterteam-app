@@ -3,7 +3,7 @@
         <div class="price">
             <p class="ammount">
                 <span>$</span>
-                {{ property.price }}
+                {{ 1000 }}
             </p>
         </div>
         <div class="location">
@@ -21,12 +21,13 @@
         </div>
         <div class="details">
             <div class="grid-details">
-                <div>Bedrooms</div>
-                <div>Bathrooms</div>
-                <div>Area</div>
-                <div>Creacion</div>
-                <div>Garage</div>
-                <div>Something</div>
+                <div
+                    v-for="feature in groupFeatures('Generales')"
+                    :key="feature.id"
+                >
+                    <p>{{ feature.label }}</p>
+                    <p>{{ feature.value }}</p>
+                </div>
             </div>
             <div class="description">
                 <h6>Descripcion</h6>
@@ -41,13 +42,27 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import PropertyShort, { Location } from '@/models/property';
+import PropertyShort, { Location, Feature } from '@/models/property';
+
+interface Features {
+    General: Array<Feature>;
+}
 
 export default defineComponent({
   name: 'PropetySingleDetails',
   props: {
     property: Object as PropType<PropertyShort>,
     location: Object as PropType<Location>,
+    features: {
+      required: true,
+      type: [] as PropType<Array<Feature>>,
+      default: [],
+    },
+  },
+  methods: {
+    groupFeatures(category: string): Array<Feature> {
+      return this.features.filter((e: Feature) => e.featureCategoryName === category);
+    },
   },
 });
 </script>

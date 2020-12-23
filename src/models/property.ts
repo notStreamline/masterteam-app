@@ -1,39 +1,3 @@
-export interface PropertyDTO{
-  bathrooms: number;
-  bedrooms: number;
-  category: {
-    groupName: string;
-    id: number;
-    name: string;
-  };
-  description: string;
-  halfBathrooms: number;
-  id: number;
-  location: {
-    childLocations: [
-      null
-    ];
-    id: number;
-    name: string;
-    parentLocationId: number;
-    parentLocationName: string;
-    parentType: {
-      id: number;
-      name: string;
-    };
-    type: {
-      id: number;
-      name: string;
-    };
-  };
-  maintenance: number;
-  metersBuilt: number;
-  parkingLots: number;
-  price: number;
-  title: string;
-  totalMeters: number;
-}
-
 export interface Location {
   id: number;
   name: string;
@@ -41,24 +5,58 @@ export interface Location {
   extentName: string;
   parent?: Location;
 }
+export interface Feature {
+  featureId: number;
+  label: string;
+  unit: string;
+  value: number;
+  featureCategoryId: number;
+  featureCategoryName: string;
+}
 
+export interface FeatureDTO {
+  featureId: number;
+  value: number;
+}
 interface PropertyType {
   groupName: string;
   id: number;
   name: string;
 }
 
-export default interface Property {
+export interface Price {
+  amount: number;
+  currencyId: number;
+  expenseTypeId: number;
+}
+export interface PropertyDTO {
   id: number;
   title: string;
   description: string;
-  propertyType: PropertyType;
-  price: number;
-  maintenance: number;
+  propertyTypeId: number;
+  prices: Array<Price>;
+  addressId: number;
+  address: {
+    latitude: number;
+    longitude: number;
+    name: string;
+    locationId: number;
+  };
+  features: Array<FeatureDTO>;
+}
+
+interface Property {
+  id: number;
+  title: string;
+  description: string;
+  propertyTypeId: PropertyType;
+  prices: Array<Price>;
   address: {
     id: number;
     name: string;
     location: Location;
   };
-  features: Array<string>;
+  features: Array<Feature>;
 }
+
+export default Property;

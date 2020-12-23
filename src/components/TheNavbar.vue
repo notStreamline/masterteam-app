@@ -49,6 +49,7 @@
               <a href="/search" class="menu-item">Alquilar</a>
               <a href="/search" class="menu-item">Comprar</a>
               <a href="/search" class="menu-item">Propiedades</a>
+              <a href="/dashboard" class="menu-item px-8 py-2 bg-green-600 shadow-sm">Publisher</a>
             </div>
           </div>
         </div>

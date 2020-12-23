@@ -4,8 +4,8 @@
             class="property-type"
             :key="value"
             @click="changeProperty(value)"
-            :class="{active: propertyType == value}">
-            <input type="radio" :id="value" v-model="propertyType" :value="value">
+            :class="{active: type == value}">
+            <input type="radio" :id="value" v-model="type" :value="value">
             <label :for="value">{{ value }}</label>
         </div>
     </div>
@@ -23,12 +23,12 @@ export default defineComponent({
   },
   data() {
     return {
-      propertyType: '',
+      type: '',
     };
   },
   methods: {
     changeProperty(value: string) {
-      this.propertyType = value;
+      this.type = value;
     },
   },
 });

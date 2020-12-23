@@ -3,6 +3,7 @@ import PropertiesRepository from './propertiesRepository';
 interface Properties {
   get: Function;
   getProperty: Function;
+  create: Function;
 }
 interface Repository {
   properties: Properties;

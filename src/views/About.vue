@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an about sexy page</h1>
+    <h1> 404 not found </h1>
   </div>
 </template>
